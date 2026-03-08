@@ -23,10 +23,8 @@
   --shadow: 0 4px 24px rgba(0,0,0,0.08);
   --shadow-hover: 0 12px 40px rgba(0,0,0,0.16);
 }
-
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bg);
   color: var(--ink);
@@ -34,8 +32,6 @@ body {
   font-weight: 400;
   overflow-x: hidden;
 }
-
-/* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
@@ -47,165 +43,137 @@ body {
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
-
 .nav-top {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px;
-  height: 60px;
+  padding: 0 32px; height: 60px;
 }
-
 .nav-logo {
   font-family: 'Syne', sans-serif;
   font-size: 22px; font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  cursor: pointer;
-  text-decoration: none;
+  letter-spacing: -0.02em; color: var(--ink);
+  cursor: pointer; text-decoration: none;
 }
 .nav-logo span { color: var(--accent); }
-
-.nav-search {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--border);
-  border-radius: 100px;
-  padding: 8px 18px;
-  font-size: 13px; color: var(--ink3);
-  cursor: pointer;
-  transition: background 0.2s;
-  border: none; font-family: 'DM Sans', sans-serif;
-}
-.nav-search:hover { background: #e0ddd6; }
-
 .nav-actions { display: flex; align-items: center; gap: 12px; }
-
 .nav-btn {
   font-size: 12px; font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 8px 20px;
-  border-radius: 100px;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: none; font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.04em; padding: 8px 20px;
+  border-radius: 100px; cursor: pointer;
+  transition: all 0.2s; border: none;
+  font-family: 'DM Sans', sans-serif;
 }
 .nav-btn-ghost {
-  background: none;
-  color: var(--ink2);
+  background: none; color: var(--ink2);
   border: 1.5px solid var(--border);
 }
 .nav-btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
-.nav-btn-solid {
-  background: var(--accent);
-  color: #fff;
-}
+.nav-btn-solid { background: var(--accent); color: #fff; }
 .nav-btn-solid:hover { background: #c8270f; }
-
 .nav-cats {
   display: flex; align-items: center; gap: 4px;
-  padding: 0 32px 10px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  padding: 0 32px 10px; overflow-x: auto; scrollbar-width: none;
 }
 .nav-cats::-webkit-scrollbar { display: none; }
-
 .cat-pill {
   display: flex; align-items: center; gap: 6px;
-  padding: 5px 16px;
-  border-radius: 100px;
+  padding: 5px 16px; border-radius: 100px;
   font-size: 12px; font-weight: 600;
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all 0.2s;
+  letter-spacing: 0.03em; white-space: nowrap;
+  cursor: pointer; transition: all 0.2s;
   border: none; font-family: 'DM Sans', sans-serif;
   background: none; color: var(--ink2);
 }
-.cat-pill:hover, .cat-pill.active {
-  background: var(--ink);
-  color: #fff;
-}
-.cat-pill .dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
+.cat-pill:hover, .cat-pill.active { background: var(--ink); color: #fff; }
+.cat-pill .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
 /* ── PAGES ── */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── HERO SECTION ── */
+/* ── LOADING ── */
+.loading-screen {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 60vh; gap: 20px;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text {
+  font-size: 14px; color: var(--ink3); font-weight: 500;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 50vh; gap: 16px; text-align: center;
+  padding: 40px;
+}
+.empty-icon { font-size: 56px; }
+.empty-state h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+}
+.empty-state p { font-size: 15px; color: var(--ink3); max-width: 380px; line-height: 1.6; }
+.empty-state .hint {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 12px; padding: 20px 28px;
+  font-size: 13px; color: var(--ink2); line-height: 1.7;
+  max-width: 420px; text-align: left; margin-top: 8px;
+}
+.empty-state .hint strong { color: var(--accent); }
+
+/* ── HERO ── */
 .hero {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 2px;
-  background: var(--border);
-  margin: 2px;
-  border-radius: var(--radius);
-  overflow: hidden;
+  display: grid; grid-template-columns: 1.5fr 1fr;
+  gap: 2px; background: var(--border);
+  margin: 2px; border-radius: var(--radius); overflow: hidden;
 }
-
 .hero-main {
-  position: relative;
-  min-height: 520px;
-  cursor: pointer;
-  overflow: hidden;
+  position: relative; min-height: 520px;
+  cursor: pointer; overflow: hidden;
 }
-
 .hero-main:hover .hero-img { transform: scale(1.04); }
-
 .hero-img {
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
   transition: transform 0.6s ease;
   display: flex; align-items: center; justify-content: center;
   font-size: 120px;
 }
-
 .hero-img-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%);
+  background: linear-gradient(0deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.08) 60%);
 }
-
 .hero-main-content {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 36px;
-  z-index: 2;
+  padding: 36px; z-index: 2;
 }
-
 .hero-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 5px 12px;
-  border-radius: 100px;
+  padding: 5px 12px; border-radius: 100px;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.06em; text-transform: uppercase;
   margin-bottom: 14px;
 }
-
 .hero-main-title {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(28px, 3.5vw, 42px);
-  line-height: 1.15;
-  color: #fff;
-  margin-bottom: 12px;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.15; color: #fff; margin-bottom: 12px;
 }
-
 .hero-main-meta {
   font-size: 13px; color: rgba(255,255,255,0.65);
   display: flex; gap: 14px; align-items: center;
 }
-.hero-main-meta span::after { content: '·'; margin-left: 14px; }
-.hero-main-meta span:last-child::after { content: ''; }
-
-.hero-side {
-  display: flex; flex-direction: column; gap: 2px;
-}
-
+.hero-side { display: flex; flex-direction: column; gap: 2px; }
 .hero-side-card {
-  position: relative;
-  flex: 1;
-  min-height: 130px;
-  cursor: pointer;
-  overflow: hidden;
+  position: relative; flex: 1; min-height: 130px;
+  cursor: pointer; overflow: hidden;
 }
 .hero-side-card:hover .side-img { transform: scale(1.06); }
 .side-img {
@@ -220,18 +188,15 @@ body {
 }
 .hero-side-content {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 16px 20px;
-  z-index: 2;
+  padding: 16px 20px; z-index: 2;
 }
 .side-badge {
   font-size: 10px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  margin-bottom: 6px;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
 }
 .side-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 16px; line-height: 1.25;
-  color: #fff;
+  font-size: 15px; line-height: 1.25; color: #fff;
 }
 
 /* ── SECTION HEADERS ── */
@@ -239,328 +204,235 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 40px 32px 20px;
 }
-.section-head-left {
-  display: flex; align-items: center; gap: 12px;
-}
+.section-head-left { display: flex; align-items: center; gap: 12px; }
 .section-head-icon {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 17px;
+  width: 34px; height: 34px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
 }
 .section-head h2 {
   font-family: 'Syne', sans-serif;
-  font-size: 20px; font-weight: 800;
-  letter-spacing: -0.02em;
+  font-size: 20px; font-weight: 800; letter-spacing: -0.02em;
 }
 .section-head-link {
-  font-size: 12px; font-weight: 600;
-  color: var(--accent);
-  cursor: pointer;
-  border: none; background: none;
+  font-size: 12px; font-weight: 600; color: var(--accent);
+  cursor: pointer; border: none; background: none;
   font-family: 'DM Sans', sans-serif;
-  display: flex; align-items: center; gap: 5px;
-  transition: gap 0.2s;
+  display: flex; align-items: center; gap: 5px; transition: gap 0.2s;
 }
 .section-head-link:hover { gap: 10px; }
 
-/* ── CARD GRIDS ── */
+/* ── CARDS ── */
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 0 32px 16px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; padding: 0 32px 16px;
 }
 .cards-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 0 32px 16px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px; padding: 0 32px 16px;
 }
-.cards-grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  padding: 0 32px 16px;
-}
-
-/* ── CARD ── */
 .card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
+  background: var(--surface); border-radius: var(--radius);
+  overflow: hidden; cursor: pointer;
+  transition: all 0.3s ease; box-shadow: var(--shadow);
   border: 1px solid var(--border);
 }
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-}
-
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .card-img {
-  aspect-ratio: 16/10;
-  position: relative;
-  overflow: hidden;
+  aspect-ratio: 16/10; position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  font-size: 56px;
-  transition: transform 0.4s ease;
 }
-.card:hover .card-img { transform: scale(1.02); }
-
 .card-img-inner {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 56px;
-  transition: transform 0.5s ease;
+  font-size: 56px; transition: transform 0.5s ease;
 }
 .card:hover .card-img-inner { transform: scale(1.08); }
-
+.card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.card:hover .card-img img { transform: scale(1.08); }
 .card-body { padding: 18px 20px 22px; }
-
 .card-tag {
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
-  margin-bottom: 9px;
-  display: flex; align-items: center; gap: 5px;
+  margin-bottom: 9px; display: flex; align-items: center; gap: 5px;
 }
-
 .card-title {
   font-family: 'DM Serif Display', serif;
-  font-size: 18px; line-height: 1.3;
-  color: var(--ink);
-  margin-bottom: 10px;
-  transition: color 0.2s;
+  font-size: 18px; line-height: 1.3; color: var(--ink);
+  margin-bottom: 10px; transition: color 0.2s;
 }
 .card:hover .card-title { color: var(--accent); }
-
 .card-excerpt {
-  font-size: 13px; font-weight: 300;
-  line-height: 1.65; color: var(--ink3);
-  margin-bottom: 14px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 13px; font-weight: 300; line-height: 1.65;
+  color: var(--ink3); margin-bottom: 14px;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
 }
-
 .card-meta {
   display: flex; align-items: center; justify-content: space-between;
 }
-.card-author {
-  font-size: 12px; font-weight: 500;
-  color: var(--ink3);
-  display: flex; align-items: center; gap: 6px;
-}
-.author-avatar {
-  width: 22px; height: 22px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px;
-  flex-shrink: 0;
-}
+.card-author { font-size: 12px; font-weight: 500; color: var(--ink3); }
 .card-read-time {
   font-size: 11px; color: var(--ink3);
-  background: var(--bg);
-  padding: 3px 10px; border-radius: 100px;
+  background: var(--bg); padding: 3px 10px; border-radius: 100px;
 }
 
-/* TALL CARD */
-.card-tall .card-img { aspect-ratio: 3/4; }
-
-/* WIDE CARD */
-.card-wide {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.card-wide .card-img {
-  aspect-ratio: unset;
-  height: 100%;
-  min-height: 200px;
-}
-
-/* ── HORIZONTAL SCROLL ── */
+/* ── SCROLL ROW ── */
 .scroll-row {
   display: flex; gap: 16px;
-  padding: 0 32px 20px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  padding: 0 32px 20px; overflow-x: auto; scrollbar-width: none;
 }
 .scroll-row::-webkit-scrollbar { display: none; }
 .scroll-row .card { min-width: 260px; flex-shrink: 0; }
 
 /* ── FEATURED BAND ── */
 .featured-band {
-  margin: 8px 32px 8px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px;
-  background: var(--border);
+  margin: 8px 32px;
+  border-radius: var(--radius); overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px; background: var(--border);
 }
-
 .band-card {
-  position: relative;
-  min-height: 280px;
-  cursor: pointer;
-  overflow: hidden;
+  position: relative; min-height: 280px;
+  cursor: pointer; overflow: hidden;
 }
 .band-card:hover .band-img { transform: scale(1.06); }
 .band-img {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
-  font-size: 72px;
-  transition: transform 0.5s ease;
+  font-size: 72px; transition: transform 0.5s ease;
 }
+.band-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease; }
+.band-card:hover .band-img img { transform: scale(1.06); }
 .band-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.0) 60%);
+  background: linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.0) 60%);
 }
-.band-content {
-  position: absolute; bottom: 0; padding: 24px;
-  z-index: 2;
-}
+.band-content { position: absolute; bottom: 0; padding: 24px; z-index: 2; }
 .band-cat {
   font-size: 10px; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  margin-bottom: 8px;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
 }
 .band-title {
   font-family: 'DM Serif Display', serif;
   font-size: 20px; line-height: 1.2; color: #fff;
 }
 
-/* ── TOPIC PILLS ROW ── */
+/* ── TOPIC PILLS ── */
 .topics-row {
   display: flex; flex-wrap: wrap; gap: 10px;
   padding: 16px 32px 28px;
 }
 .topic-pill {
   display: flex; align-items: center; gap: 8px;
-  padding: 10px 20px;
-  border-radius: 100px;
-  font-size: 13px; font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  color: var(--ink2);
+  padding: 10px 20px; border-radius: 100px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all 0.2s; border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--ink2);
 }
 .topic-pill:hover { border-color: var(--ink); background: var(--ink); color: #fff; }
 .topic-pill span { font-size: 16px; }
 
-/* ── NEWSLETTER STRIP ── */
+/* ── NEWSLETTER ── */
 .newsletter {
-  margin: 8px 32px 24px;
-  background: var(--ink);
-  border-radius: var(--radius);
-  padding: 48px 56px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 32px;
+  margin: 8px 32px 24px; background: var(--ink);
+  border-radius: var(--radius); padding: 48px 56px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
 .newsletter-text h3 {
   font-family: 'DM Serif Display', serif;
-  font-size: 30px; color: #fff;
-  margin-bottom: 8px;
+  font-size: 30px; color: #fff; margin-bottom: 8px;
 }
 .newsletter-text p { font-size: 15px; color: rgba(255,255,255,0.55); }
-.newsletter-form {
-  display: flex; gap: 10px; align-items: center;
-  flex-shrink: 0;
-}
+.newsletter-form { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
 .newsletter-input {
-  padding: 12px 20px;
-  border-radius: 100px;
-  border: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  width: 260px;
-  outline: none;
+  padding: 12px 20px; border-radius: 100px; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  width: 260px; outline: none;
 }
 .newsletter-submit {
-  padding: 12px 24px;
-  border-radius: 100px;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px; font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.2s;
+  padding: 12px 24px; border-radius: 100px;
+  background: var(--accent); color: #fff; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+  cursor: pointer; white-space: nowrap; transition: background 0.2s;
 }
 .newsletter-submit:hover { background: #c8270f; }
 
-/* ── LIST VIEW (Blog Page) ── */
-.list-view { padding: 0 32px; }
-.list-item {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 20px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.list-item:hover { opacity: 0.75; }
-.list-item-img {
-  border-radius: 10px;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 36px;
-  flex-shrink: 0;
-}
-.list-item-cat {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.list-item-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 20px; line-height: 1.25;
-  margin-bottom: 8px;
-  color: var(--ink);
+/* ── ARTICLE VIEW ── */
+.article-view { max-width: 760px; margin: 0 auto; padding: 48px 32px 80px; }
+.article-back {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--ink3);
+  cursor: pointer; margin-bottom: 32px;
+  background: none; border: none; font-family: 'DM Sans', sans-serif;
   transition: color 0.2s;
 }
-.list-item:hover .list-item-title { color: var(--accent); }
-.list-item-excerpt {
-  font-size: 13px; color: var(--ink3);
-  line-height: 1.6; margin-bottom: 10px;
-  display: -webkit-box; -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; overflow: hidden;
+.article-back:hover { color: var(--accent); }
+.article-cat {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 16px;
 }
-.list-item-meta { font-size: 12px; color: var(--ink3); display: flex; gap: 14px; }
+.article-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1; margin-bottom: 20px;
+}
+.article-meta {
+  font-size: 14px; color: var(--ink3);
+  display: flex; gap: 16px; margin-bottom: 32px;
+  padding-bottom: 24px; border-bottom: 1px solid var(--border);
+}
+.article-cover {
+  width: 100%; aspect-ratio: 16/9;
+  border-radius: var(--radius); overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 100px; margin-bottom: 36px;
+}
+.article-cover img { width:100%; height:100%; object-fit:cover; }
+.article-body {
+  font-size: 17px; font-weight: 300; line-height: 1.85;
+  color: var(--ink2);
+}
+.article-body p { margin-bottom: 20px; }
+.article-body h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; margin: 36px 0 16px; color: var(--ink);
+}
+.article-body h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; margin: 28px 0 12px; color: var(--ink);
+}
+.article-body blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 12px 24px; margin: 28px 0;
+  background: #fff8f7; border-radius: 0 8px 8px 0;
+  font-style: italic; color: var(--ink);
+}
+.article-body ul, .article-body ol {
+  padding-left: 24px; margin-bottom: 20px;
+}
+.article-body li { margin-bottom: 8px; }
 
-/* ── PAGE HERO ── */
+/* ── BLOG PAGE ── */
 .page-head {
-  padding: 48px 32px 24px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 8px;
+  padding: 48px 32px 24px; border-bottom: 1px solid var(--border); margin-bottom: 8px;
 }
 .page-head h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(40px, 5vw, 64px);
-  line-height: 1.05;
-  margin-bottom: 12px;
+  font-size: clamp(40px, 5vw, 64px); line-height: 1.05; margin-bottom: 12px;
 }
 .page-head p { font-size: 16px; font-weight: 300; color: var(--ink3); max-width: 520px; }
-
-/* ── FILTER BAR ── */
 .filter-wrap {
-  display: flex; gap: 8px; flex-wrap: wrap;
-  padding: 16px 32px 24px;
+  display: flex; gap: 8px; flex-wrap: wrap; padding: 16px 32px 24px;
 }
 .filter-btn {
-  padding: 7px 18px;
-  border-radius: 100px;
+  padding: 7px 18px; border-radius: 100px;
   font-size: 12px; font-weight: 600;
-  border: 1.5px solid var(--border);
-  background: var(--surface);
-  color: var(--ink2);
-  cursor: pointer;
-  transition: all 0.2s;
+  border: 1.5px solid var(--border); background: var(--surface);
+  color: var(--ink2); cursor: pointer; transition: all 0.2s;
   font-family: 'DM Sans', sans-serif;
 }
 .filter-btn:hover, .filter-btn.active {
@@ -569,267 +441,191 @@ body {
 
 /* ── ABOUT ── */
 .about-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--border);
-  margin: 2px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  min-height: 480px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  background: var(--border); margin: 2px;
+  border-radius: var(--radius); overflow: hidden; min-height: 480px;
 }
 .about-hero-left {
-  padding: 72px 56px;
-  background: var(--ink);
+  padding: 72px 56px; background: var(--ink);
   display: flex; flex-direction: column; justify-content: center;
 }
 .about-hero-left h1 {
   font-family: 'DM Serif Display', serif;
   font-size: clamp(40px, 4vw, 58px);
-  color: #fff; line-height: 1.1;
-  margin-bottom: 20px;
+  color: #fff; line-height: 1.1; margin-bottom: 20px;
 }
 .about-hero-left h1 em { font-style: italic; color: var(--accent2); }
 .about-hero-left p {
-  font-size: 16px; font-weight: 300;
-  line-height: 1.75; color: rgba(255,255,255,0.6);
-  max-width: 420px; margin-bottom: 32px;
+  font-size: 16px; font-weight: 300; line-height: 1.75;
+  color: rgba(255,255,255,0.6); max-width: 420px; margin-bottom: 16px;
 }
 .about-hero-right {
   background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
   display: flex; align-items: center; justify-content: center;
-  font-size: 100px;
-  position: relative;
-  overflow: hidden;
+  font-size: 100px; position: relative; overflow: hidden;
 }
 .about-hero-right::before {
-  content: 'PULSE';
-  position: absolute;
-  font-family: 'Syne', sans-serif;
-  font-size: 120px; font-weight: 800;
-  color: rgba(0,0,0,0.04);
-  letter-spacing: -0.05em;
+  content: 'PULSE'; position: absolute;
+  font-family: 'Syne', sans-serif; font-size: 120px; font-weight: 800;
+  color: rgba(0,0,0,0.04); letter-spacing: -0.05em;
 }
 .about-values {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  background: var(--border);
-  margin: 2px;
-  border-radius: var(--radius);
-  overflow: hidden;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  background: var(--border); margin: 2px;
+  border-radius: var(--radius); overflow: hidden;
 }
-.value-card {
-  background: var(--surface);
-  padding: 48px 40px;
-}
+.value-card { background: var(--surface); padding: 48px 40px; }
 .value-num {
-  font-family: 'Syne', sans-serif;
-  font-size: 52px; font-weight: 800;
-  color: var(--border);
-  margin-bottom: 16px; line-height: 1;
+  font-family: 'Syne', sans-serif; font-size: 52px; font-weight: 800;
+  color: var(--border); margin-bottom: 16px; line-height: 1;
 }
-.value-card h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 24px; margin-bottom: 12px;
-}
+.value-card h3 { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 12px; }
 .value-card p { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--ink3); }
 
 /* ── CONTACT ── */
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--border);
-  margin: 2px;
-  border-radius: var(--radius);
-  overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  background: var(--border); margin: 2px;
+  border-radius: var(--radius); overflow: hidden;
   min-height: calc(100vh - 120px);
 }
 .contact-left {
-  padding: 72px 56px;
-  background: var(--surface);
+  padding: 72px 56px; background: var(--surface);
   display: flex; flex-direction: column; justify-content: center;
 }
 .contact-left h1 {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(38px, 4vw, 54px);
-  line-height: 1.1; margin-bottom: 16px;
+  font-size: clamp(38px, 4vw, 54px); line-height: 1.1; margin-bottom: 16px;
 }
 .contact-left h1 span { color: var(--accent); font-style: italic; }
 .contact-left p {
-  font-size: 16px; font-weight: 300;
-  line-height: 1.7; color: var(--ink3);
-  max-width: 400px; margin-bottom: 48px;
+  font-size: 16px; font-weight: 300; line-height: 1.7;
+  color: var(--ink3); max-width: 400px; margin-bottom: 48px;
 }
 .contact-info-items { display: flex; flex-direction: column; gap: 24px; }
-.cinfo {
-  display: flex; align-items: flex-start; gap: 16px;
-}
+.cinfo { display: flex; align-items: flex-start; gap: 16px; }
 .cinfo-icon {
-  width: 44px; height: 44px;
-  background: var(--bg);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; flex-shrink: 0;
+  width: 44px; height: 44px; background: var(--bg);
+  border-radius: 12px; display: flex; align-items: center;
+  justify-content: center; font-size: 20px; flex-shrink: 0;
   border: 1px solid var(--border);
 }
 .cinfo-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink3); margin-bottom: 3px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink3); margin-bottom: 3px;
 }
 .cinfo-val { font-size: 15px; font-weight: 500; }
-
 .contact-right {
-  padding: 72px 56px;
-  background: var(--bg);
+  padding: 72px 56px; background: var(--bg);
   display: flex; flex-direction: column; justify-content: center;
 }
 .form-group { margin-bottom: 20px; }
 .form-group label {
-  display: block;
-  font-size: 11px; font-weight: 600;
+  display: block; font-size: 11px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--ink3); margin-bottom: 8px;
 }
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  color: var(--ink);
-  padding: 12px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  border-radius: 10px;
-  outline: none;
-  transition: border-color 0.2s;
-  appearance: none;
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; background: var(--surface);
+  border: 1.5px solid var(--border); color: var(--ink);
+  padding: 12px 16px; font-family: 'DM Sans', sans-serif;
+  font-size: 14px; border-radius: 10px; outline: none;
+  transition: border-color 0.2s; appearance: none;
 }
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus { border-color: var(--accent); }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
 .form-group textarea { height: 130px; resize: none; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
 /* ── FOOTER ── */
-footer {
-  background: var(--ink);
-  padding: 56px 32px 32px;
-  margin-top: 24px;
-}
+footer { background: var(--ink); padding: 56px 32px 32px; margin-top: 24px; }
 .footer-top {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 40px; padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-logo {
-  font-family: 'Syne', sans-serif;
-  font-size: 24px; font-weight: 800;
-  color: #fff; margin-bottom: 12px;
-}
+.footer-logo { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; }
 .footer-logo span { color: var(--accent); }
 .footer-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 20px; }
 .footer-socials { display: flex; gap: 10px; }
 .fsoc {
-  width: 36px; height: 36px;
-  border-radius: 10px;
+  width: 36px; height: 36px; border-radius: 10px;
   background: rgba(255,255,255,0.07);
   display: flex; align-items: center; justify-content: center;
-  font-size: 15px; cursor: pointer;
-  transition: background 0.2s; text-decoration: none; color: #fff;
+  font-size: 15px; cursor: pointer; transition: background 0.2s;
+  text-decoration: none; color: #fff;
 }
 .fsoc:hover { background: var(--accent); }
 .footer-col h4 {
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-  margin-bottom: 18px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 18px;
 }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-col a {
   font-size: 14px; color: rgba(255,255,255,0.5);
-  text-decoration: none; cursor: pointer;
-  transition: color 0.2s;
+  text-decoration: none; cursor: pointer; transition: color 0.2s;
 }
 .footer-col a:hover { color: #fff; }
-.footer-bottom {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; }
 .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
 .footer-bottom span { color: var(--accent); }
 
-/* ── COLOR HELPERS ── */
-.bg-movies { background: linear-gradient(135deg, #1a0533 0%, #3d0066 100%); }
-.bg-lifestyle { background: linear-gradient(135deg, #0d3320 0%, #1a6b40 100%); }
-.bg-tech { background: linear-gradient(135deg, #0d1a33 0%, #0d3366 100%); }
-.bg-food { background: linear-gradient(135deg, #331a00 0%, #804000 100%); }
-.bg-travel { background: linear-gradient(135deg, #003333 0%, #006666 100%); }
-.bg-music { background: linear-gradient(135deg, #330033 0%, #660066 100%); }
-.bg-health { background: linear-gradient(135deg, #1a3300 0%, #336600 100%); }
-.bg-culture { background: linear-gradient(135deg, #33001a 0%, #660033 100%); }
-.bg-finance { background: linear-gradient(135deg, #001a33 0%, #003366 100%); }
-.bg-home { background: linear-gradient(135deg, #2d1b00 0%, #6b4200 100%); }
-.bg-fashion { background: linear-gradient(135deg, #33001a 0%, #800040 100%); }
-.bg-news { background: linear-gradient(135deg, #1a0000 0%, #660000 100%); }
+/* ── BG COLOURS ── */
+.bg-movies { background: linear-gradient(135deg,#1a0533,#3d0066); }
+.bg-lifestyle { background: linear-gradient(135deg,#0d3320,#1a6b40); }
+.bg-tech { background: linear-gradient(135deg,#0d1a33,#0d3366); }
+.bg-food { background: linear-gradient(135deg,#331a00,#804000); }
+.bg-travel { background: linear-gradient(135deg,#003333,#006666); }
+.bg-music { background: linear-gradient(135deg,#330033,#660066); }
+.bg-health { background: linear-gradient(135deg,#1a3300,#336600); }
+.bg-culture { background: linear-gradient(135deg,#33001a,#660033); }
+.bg-finance { background: linear-gradient(135deg,#001a33,#003366); }
+.bg-home { background: linear-gradient(135deg,#2d1b00,#6b4200); }
+.bg-fashion { background: linear-gradient(135deg,#33001a,#800040); }
+.bg-news { background: linear-gradient(135deg,#1a0000,#660000); }
+.bg-default { background: linear-gradient(135deg,#1a1a1a,#333); }
 
-.c-movies { color: #b78bff; }
-.c-lifestyle { color: var(--green); }
-.c-tech { color: #60a5fa; }
-.c-food { color: var(--accent2); }
-.c-travel { color: var(--teal); }
-.c-music { color: var(--pink); }
-.c-health { color: #86efac; }
-.c-culture { color: #f9a8d4; }
-.c-finance { color: #93c5fd; }
-.c-home { color: #fbbf24; }
-.c-fashion { color: #f472b6; }
-.c-news { color: #fca5a5; }
+.c-movies{color:#b78bff} .c-lifestyle{color:#22c55e} .c-tech{color:#60a5fa}
+.c-food{color:#f5a623} .c-travel{color:#0ea9a0} .c-music{color:#ec4899}
+.c-health{color:#86efac} .c-culture{color:#f9a8d4} .c-finance{color:#93c5fd}
+.c-home{color:#fbbf24} .c-fashion{color:#f472b6} .c-news{color:#fca5a5}
+.c-default{color:#aaa}
 
 /* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.page.active > * {
-  animation: fadeUp 0.4s ease both;
-}
-.page.active > *:nth-child(2) { animation-delay: 0.06s; }
-.page.active > *:nth-child(3) { animation-delay: 0.12s; }
-.page.active > *:nth-child(4) { animation-delay: 0.18s; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.page.active > * { animation: fadeUp 0.4s ease both; }
+.page.active > *:nth-child(2){animation-delay:0.06s}
+.page.active > *:nth-child(3){animation-delay:0.12s}
+.page.active > *:nth-child(4){animation-delay:0.18s}
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1024px) {
-  .cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero { grid-template-columns: 1fr; }
-  .hero-side { display: none; }
-  .featured-band { grid-template-columns: 1fr 1fr; }
-  .about-hero { grid-template-columns: 1fr; }
-  .about-hero-right { min-height: 200px; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+@media(max-width:1024px){
+  .cards-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{grid-template-columns:1fr}
+  .hero-side{display:none}
+  .featured-band{grid-template-columns:1fr 1fr}
+  .about-hero{grid-template-columns:1fr}
+  .about-hero-right{min-height:200px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
 }
-@media (max-width: 700px) {
-  .nav-top { padding: 0 16px; }
-  .nav-cats { padding: 0 16px 10px; }
-  .cards-grid, .cards-grid-3, .cards-grid-2 { grid-template-columns: 1fr; padding: 0 16px 16px; }
-  .section-head, .page-head, .filter-wrap, .topics-row { padding-left: 16px; padding-right: 16px; }
-  .list-view { padding: 0 16px; }
-  .newsletter { flex-direction: column; padding: 32px 24px; margin: 8px 16px; }
-  .newsletter-input { width: 100%; }
-  .newsletter-form { flex-direction: column; width: 100%; }
-  .newsletter-submit { width: 100%; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .about-values { grid-template-columns: 1fr; }
-  .featured-band { grid-template-columns: 1fr; }
-  footer { padding: 40px 16px 24px; }
-  .footer-top { grid-template-columns: 1fr; gap: 24px; }
-  .scroll-row { padding: 0 16px 20px; }
-  .form-row { grid-template-columns: 1fr; }
+@media(max-width:700px){
+  .nav-top{padding:0 16px}
+  .nav-cats{padding:0 16px 10px}
+  .cards-grid,.cards-grid-3{grid-template-columns:1fr;padding:0 16px 16px}
+  .section-head,.page-head,.filter-wrap,.topics-row{padding-left:16px;padding-right:16px}
+  .newsletter{flex-direction:column;padding:32px 24px;margin:8px 16px}
+  .newsletter-input{width:100%}
+  .newsletter-form{flex-direction:column;width:100%}
+  .newsletter-submit{width:100%}
+  .contact-grid{grid-template-columns:1fr}
+  .about-values{grid-template-columns:1fr}
+  .featured-band{grid-template-columns:1fr}
+  footer{padding:40px 16px 24px}
+  .footer-top{grid-template-columns:1fr;gap:24px}
+  .scroll-row{padding:0 16px 20px}
+  .form-row{grid-template-columns:1fr}
+  .article-view{padding:32px 16px 60px}
+  .contact-left,.contact-right{padding:48px 24px}
+  .about-hero-left{padding:48px 24px}
 }
 </style>
 </head>
@@ -839,7 +635,6 @@ footer {
 <div class="nav">
   <div class="nav-top">
     <a class="nav-logo" onclick="showPage('home')" style="cursor:pointer">Pulse<span>Toob</span></a>
-    <button class="nav-search" onclick="showPage('blog')">🔍 &nbsp; Search stories...</button>
     <div class="nav-actions">
       <button class="nav-btn nav-btn-ghost" onclick="showPage('about')">About</button>
       <button class="nav-btn nav-btn-ghost" onclick="showPage('contact')">Contact</button>
@@ -855,229 +650,42 @@ footer {
     <button class="cat-pill" onclick="setNavCat(this,'travel')"><span class="dot" style="background:#0ea9a0"></span>Travel</button>
     <button class="cat-pill" onclick="setNavCat(this,'music')"><span class="dot" style="background:#ec4899"></span>Music</button>
     <button class="cat-pill" onclick="setNavCat(this,'health')"><span class="dot" style="background:#86efac"></span>Health</button>
-    <button class="cat-pill" onclick="setNavCat(this,'home')"><span class="dot" style="background:#fbbf24"></span>Home & Design</button>
+    <button class="cat-pill" onclick="setNavCat(this,'home')"><span class="dot" style="background:#fbbf24"></span>Home</button>
     <button class="cat-pill" onclick="setNavCat(this,'news')"><span class="dot" style="background:#fca5a5"></span>News</button>
   </div>
 </div>
 
-<!-- ══════════════ HOME ══════════════ -->
+<!-- ══════ HOME ══════ -->
 <div class="page active" id="home">
-
-  <!-- HERO -->
-  <div class="hero" style="margin-bottom:2px">
-    <div class="hero-main" onclick="showPage('blog')">
-      <div class="hero-img bg-movies">🎬</div>
-      <div class="hero-img-overlay"></div>
-      <div class="hero-main-content">
-        <div class="hero-badge" style="background:rgba(183,139,255,0.25);color:#b78bff">🎬 Movies & TV</div>
-        <div class="hero-main-title">The Films That Defined a Generation — And What They're Still Trying to Tell Us</div>
-        <div class="hero-main-meta">
-          <span>PulseToob</span>
-          <span>10 min read</span>
-          <span>Mar 2025</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-side">
-      <div class="hero-side-card" onclick="showPage('blog')">
-        <div class="side-img bg-lifestyle">🌿</div>
-        <div class="side-img-overlay"></div>
-        <div class="hero-side-content">
-          <div class="side-badge c-lifestyle">Lifestyle</div>
-          <div class="side-title">Morning Routines of People Who Actually Have It Together</div>
-        </div>
-      </div>
-      <div class="hero-side-card" onclick="showPage('blog')">
-        <div class="side-img bg-travel">✈️</div>
-        <div class="side-img-overlay"></div>
-        <div class="hero-side-content">
-          <div class="side-badge c-travel">Travel</div>
-          <div class="side-title">Hidden Gems in East Africa That'll Ruin You for Everywhere Else</div>
-        </div>
-      </div>
-      <div class="hero-side-card" onclick="showPage('blog')">
-        <div class="side-img bg-food">🍜</div>
-        <div class="side-img-overlay"></div>
-        <div class="hero-side-content">
-          <div class="side-badge c-food">Food</div>
-          <div class="side-title">Street Food Capital of the World? The Answer Might Surprise You</div>
-        </div>
-      </div>
+  <div id="homeContent">
+    <div class="loading-screen">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading PulseToob...</div>
     </div>
   </div>
 
-  <!-- TRENDING NOW -->
   <div class="section-head">
-    <div class="section-head-left">
-      <div class="section-head-icon" style="background:#fff1f0">🔥</div>
-      <h2>Trending Now</h2>
-    </div>
-    <button class="section-head-link" onclick="showPage('blog')">See all →</button>
-  </div>
-
-  <div class="cards-grid">
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-tech"><div class="card-img-inner">💻</div></div>
-      <div class="card-body">
-        <div class="card-tag c-tech">⚡ Tech</div>
-        <div class="card-title">AI Is Not Coming For Your Job. Something Else Is.</div>
-        <div class="card-excerpt">The automation panic is real but misdirected. Here's what you should actually be worried about.</div>
-        <div class="card-meta">
-          <div class="card-author"><div class="author-avatar" style="background:#dbeafe">👤</div> PulseToob</div>
-          <div class="card-read-time">7 min</div>
-        </div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-music"><div class="card-img-inner">🎵</div></div>
-      <div class="card-body">
-        <div class="card-tag c-music">🎵 Music</div>
-        <div class="card-title">The Albums That Hit Different at 2am</div>
-        <div class="card-excerpt">Some music is made for the day. These are the records for when the world finally goes quiet.</div>
-        <div class="card-meta">
-          <div class="card-author"><div class="author-avatar" style="background:#fce7f3">👤</div> PulseToob</div>
-          <div class="card-read-time">5 min</div>
-        </div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-health"><div class="card-img-inner">🌱</div></div>
-      <div class="card-body">
-        <div class="card-tag c-health">🌱 Health</div>
-        <div class="card-title">Why Your Body Feels Tired Even When You Sleep Enough</div>
-        <div class="card-excerpt">Exhaustion isn't always about sleep. The real culprit might be hiding in plain sight.</div>
-        <div class="card-meta">
-          <div class="card-author"><div class="author-avatar" style="background:#dcfce7">👤</div> PulseToob</div>
-          <div class="card-read-time">6 min</div>
-        </div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-home"><div class="card-img-inner">🏠</div></div>
-      <div class="card-body">
-        <div class="card-tag c-home">🏠 Home</div>
-        <div class="card-title">Small Apartment, Big Life: Interior Ideas That Actually Work</div>
-        <div class="card-excerpt">You don't need more space. You need smarter use of the space you already have.</div>
-        <div class="card-meta">
-          <div class="card-author"><div class="author-avatar" style="background:#fef3c7">👤</div> PulseToob</div>
-          <div class="card-read-time">8 min</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FEATURED BAND: Movies + Culture + Food -->
-  <div class="section-head">
-    <div class="section-head-left">
-      <div class="section-head-icon" style="background:#f3e8ff">🌟</div>
-      <h2>Editor's Picks</h2>
-    </div>
-  </div>
-  <div class="featured-band">
-    <div class="band-card" onclick="showPage('blog')">
-      <div class="band-img bg-movies">🎭</div>
-      <div class="band-overlay"></div>
-      <div class="band-content">
-        <div class="band-cat c-movies">Movies</div>
-        <div class="band-title">Every Oscar Winner Since 2000, Ranked by How Well They've Aged</div>
-      </div>
-    </div>
-    <div class="band-card" onclick="showPage('blog')">
-      <div class="band-img bg-culture">🎨</div>
-      <div class="band-overlay"></div>
-      <div class="band-content">
-        <div class="band-cat c-culture">Culture</div>
-        <div class="band-title">What African Cities Are Teaching The World About Reinvention</div>
-      </div>
-    </div>
-    <div class="band-card" onclick="showPage('blog')">
-      <div class="band-img bg-food">🍳</div>
-      <div class="band-overlay"></div>
-      <div class="band-content">
-        <div class="band-cat c-food">Food</div>
-        <div class="band-title">The Ultimate Guide to Cooking Like You Know What You're Doing</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIFESTYLE SCROLL -->
-  <div class="section-head">
-    <div class="section-head-left">
-      <div class="section-head-icon" style="background:#dcfce7">🌿</div>
-      <h2>Lifestyle</h2>
-    </div>
-    <button class="section-head-link" onclick="showPage('blog')">See all →</button>
-  </div>
-  <div class="scroll-row">
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-lifestyle"><div class="card-img-inner">🧘</div></div>
-      <div class="card-body">
-        <div class="card-tag c-lifestyle">Lifestyle</div>
-        <div class="card-title">The Art of Doing Nothing Without Guilt</div>
-        <div class="card-meta"><div class="card-author">PulseToob</div><div class="card-read-time">5 min</div></div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-health"><div class="card-img-inner">☀️</div></div>
-      <div class="card-body">
-        <div class="card-tag c-health">Health</div>
-        <div class="card-title">The Morning Habit Science Says Changes Everything</div>
-        <div class="card-meta"><div class="card-author">PulseToob</div><div class="card-read-time">4 min</div></div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-fashion"><div class="card-img-inner">👗</div></div>
-      <div class="card-body">
-        <div class="card-tag c-fashion">Fashion</div>
-        <div class="card-title">How to Look Expensive on a Budget — A Practical Guide</div>
-        <div class="card-meta"><div class="card-author">PulseToob</div><div class="card-read-time">6 min</div></div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-home"><div class="card-img-inner">🕯️</div></div>
-      <div class="card-body">
-        <div class="card-tag c-home">Home</div>
-        <div class="card-title">10 Ways to Make Any Room Feel Instantly Calmer</div>
-        <div class="card-meta"><div class="card-author">PulseToob</div><div class="card-read-time">5 min</div></div>
-      </div>
-    </div>
-    <div class="card" onclick="showPage('blog')">
-      <div class="card-img bg-lifestyle"><div class="card-img-inner">📚</div></div>
-      <div class="card-body">
-        <div class="card-tag c-lifestyle">Lifestyle</div>
-        <div class="card-title">Books That Actually Changed the Way I Think</div>
-        <div class="card-meta"><div class="card-author">PulseToob</div><div class="card-read-time">7 min</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TOPICS -->
-  <div class="section-head" style="padding-bottom:8px">
     <div class="section-head-left">
       <div class="section-head-icon" style="background:#f0fdf4">🗂️</div>
       <h2>Browse By Topic</h2>
     </div>
   </div>
   <div class="topics-row">
-    <div class="topic-pill" onclick="showPage('blog')"><span>🎬</span> Movies & TV</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>🌿</span> Lifestyle</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>💻</span> Technology</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>🍜</span> Food & Drink</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>✈️</span> Travel</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>🎵</span> Music</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>🏠</span> Home Design</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>💚</span> Health & Wellness</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>💰</span> Finance</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>🌍</span> Culture</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>👗</span> Fashion</div>
-    <div class="topic-pill" onclick="showPage('blog')"><span>📰</span> News</div>
+    <div class="topic-pill" onclick="goToBlog('movies')"><span>🎬</span> Movies & TV</div>
+    <div class="topic-pill" onclick="goToBlog('lifestyle')"><span>🌿</span> Lifestyle</div>
+    <div class="topic-pill" onclick="goToBlog('tech')"><span>💻</span> Technology</div>
+    <div class="topic-pill" onclick="goToBlog('food')"><span>🍜</span> Food & Drink</div>
+    <div class="topic-pill" onclick="goToBlog('travel')"><span>✈️</span> Travel</div>
+    <div class="topic-pill" onclick="goToBlog('music')"><span>🎵</span> Music</div>
+    <div class="topic-pill" onclick="goToBlog('home')"><span>🏠</span> Home Design</div>
+    <div class="topic-pill" onclick="goToBlog('health')"><span>💚</span> Health</div>
+    <div class="topic-pill" onclick="goToBlog('news')"><span>📰</span> News</div>
   </div>
 
-  <!-- NEWSLETTER -->
   <div class="newsletter">
     <div class="newsletter-text">
       <h3>Get the pulse. Weekly.</h3>
-      <p>The best stories from PulseToob, curated and delivered every Sunday.</p>
+      <p>The best stories from PulseToob, curated every Sunday.</p>
     </div>
     <div class="newsletter-form">
       <input class="newsletter-input" type="email" placeholder="your@email.com">
@@ -1091,10 +699,8 @@ footer {
         <div class="footer-logo">Pulse<span>Toob</span></div>
         <p class="footer-desc">Life. Culture. Everything in between. Bold stories for curious people.</p>
         <div class="footer-socials">
-          <a class="fsoc">𝕏</a>
-          <a class="fsoc">📷</a>
-          <a class="fsoc">in</a>
-          <a class="fsoc">▶</a>
+          <a class="fsoc">𝕏</a><a class="fsoc">📷</a>
+          <a class="fsoc">in</a><a class="fsoc">▶</a>
         </div>
       </div>
       <div class="footer-col">
@@ -1109,11 +715,11 @@ footer {
       <div class="footer-col">
         <h4>Topics</h4>
         <ul>
-          <li><a onclick="showPage('blog')">Movies & TV</a></li>
-          <li><a onclick="showPage('blog')">Lifestyle</a></li>
-          <li><a onclick="showPage('blog')">Food & Travel</a></li>
-          <li><a onclick="showPage('blog')">Tech</a></li>
-          <li><a onclick="showPage('blog')">Home Design</a></li>
+          <li><a onclick="goToBlog('movies')">Movies & TV</a></li>
+          <li><a onclick="goToBlog('lifestyle')">Lifestyle</a></li>
+          <li><a onclick="goToBlog('food')">Food & Travel</a></li>
+          <li><a onclick="goToBlog('tech')">Tech</a></li>
+          <li><a onclick="goToBlog('home')">Home Design</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1133,13 +739,12 @@ footer {
   </footer>
 </div>
 
-<!-- ══════════════ BLOG ══════════════ -->
+<!-- ══════ BLOG ══════ -->
 <div class="page" id="blog">
   <div class="page-head">
     <h1>All Stories</h1>
     <p>Every piece published here is written to challenge, inspire, or shift how you see the world.</p>
   </div>
-
   <div class="filter-wrap">
     <button class="filter-btn active" onclick="filterBlog(this,'all')">✦ All</button>
     <button class="filter-btn" onclick="filterBlog(this,'movies')">🎬 Movies</button>
@@ -1152,9 +757,12 @@ footer {
     <button class="filter-btn" onclick="filterBlog(this,'home')">🏠 Home</button>
     <button class="filter-btn" onclick="filterBlog(this,'news')">📰 News</button>
   </div>
-
-  <div class="cards-grid-3" id="blogCards"></div>
-
+  <div id="blogCards" class="cards-grid-3">
+    <div class="loading-screen" style="grid-column:1/-1">
+      <div class="spinner"></div>
+      <div class="loading-text">Fetching stories...</div>
+    </div>
+  </div>
   <div class="newsletter" style="margin-top:8px">
     <div class="newsletter-text">
       <h3>Never miss a story.</h3>
@@ -1165,7 +773,6 @@ footer {
       <button class="newsletter-submit" onclick="alert('You\'re in! 🔥')">Subscribe</button>
     </div>
   </div>
-
   <footer>
     <div class="footer-bottom" style="padding-top:0">
       <p>© 2025 PulseToob. Made with <span>♥</span></p>
@@ -1174,43 +781,45 @@ footer {
   </footer>
 </div>
 
-<!-- ══════════════ ABOUT ══════════════ -->
+<!-- ══════ ARTICLE ══════ -->
+<div class="page" id="article">
+  <div class="article-view" id="articleContent"></div>
+</div>
+
+<!-- ══════ ABOUT ══════ -->
 <div class="page" id="about">
   <div class="about-hero">
     <div class="about-hero-left">
       <h1>We are<br><em>PulseToob</em></h1>
-      <p>A platform built for curious people. For the ones who stay up late because the world still makes them wonder. We write about movies, life, food, travel, tech — and everything that sits in between.</p>
-      <p style="color:rgba(255,255,255,0.6);font-size:15px;font-weight:300;line-height:1.75">We don't chase virality. We chase truth. We don't publish noise. We publish perspective. Bold, independent, and unapologetically real — from wherever the pulse takes us.</p>
-      <button class="nav-btn nav-btn-solid" style="margin-top:16px;width:fit-content" onclick="showPage('contact')">Write For Us →</button>
+      <p>A platform built for curious people. For the ones who stay up late because the world still makes them wonder. Movies, life, food, travel, tech — and everything in between.</p>
+      <p style="color:rgba(255,255,255,0.6);font-size:15px;font-weight:300;line-height:1.75">Bold, independent, and unapologetically real — from wherever the pulse takes us.</p>
+      <button class="nav-btn nav-btn-solid" style="margin-top:24px;width:fit-content" onclick="showPage('contact')">Write For Us →</button>
     </div>
     <div class="about-hero-right">🌍</div>
   </div>
-
   <div class="section-head">
     <div class="section-head-left">
       <div class="section-head-icon" style="background:#fff1f0">💡</div>
       <h2>What We Stand For</h2>
     </div>
   </div>
-
   <div class="about-values">
     <div class="value-card">
       <div class="value-num">01</div>
       <h3>Bold Perspective</h3>
-      <p>We take positions. We share views. We believe the most important thing a publication can do is make you think — even when it's uncomfortable. No sponsored opinions. No fluff.</p>
+      <p>We take positions. We share views. No sponsored opinions. No fluff. Just honest takes on the things that matter.</p>
     </div>
     <div class="value-card">
       <div class="value-num">02</div>
       <h3>Diverse Voices</h3>
-      <p>PulseToob was built on the belief that the most important voices in the world aren't always the loudest. We amplify stories that matter — from everywhere, for everyone.</p>
+      <p>The most important voices aren't always the loudest. We amplify stories that matter — from everywhere, for everyone.</p>
     </div>
     <div class="value-card">
       <div class="value-num">03</div>
       <h3>Always Curious</h3>
-      <p>From data science to design, movies to meal prep — our range is our strength. We go wherever the pulse takes us, and we never stop asking why.</p>
+      <p>From data science to design, movies to meal prep — our range is our strength. We never stop asking why.</p>
     </div>
   </div>
-
   <footer style="margin-top:24px">
     <div class="footer-bottom" style="padding-top:0">
       <p>© 2025 PulseToob. Made with <span>♥</span></p>
@@ -1219,16 +828,16 @@ footer {
   </footer>
 </div>
 
-<!-- ══════════════ CONTACT ══════════════ -->
+<!-- ══════ CONTACT ══════ -->
 <div class="page" id="contact">
   <div class="contact-grid">
     <div class="contact-left">
       <h1>Let's <span>talk.</span></h1>
-      <p>Got a story pitch, collaboration idea, or just want to say hi? We read every message — don't be a stranger.</p>
+      <p>Got a story pitch, collaboration idea, or just want to say hi? We read every message.</p>
       <div class="contact-info-items">
         <div class="cinfo">
           <div class="cinfo-icon">✉️</div>
-          <div><div class="cinfo-label">Email</div><div class="cinfo-val">hello@pulsetoob.com</div></div>
+          <div><div class="cinfo-label">Email</div><div class="cinfo-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d6beb3babab996a6a3baa5b3a2b9b9b4f8b5b9bb">[email&#160;protected]</a></div></div>
         </div>
         <div class="cinfo">
           <div class="cinfo-icon">🌐</div>
@@ -1236,7 +845,7 @@ footer {
         </div>
         <div class="cinfo">
           <div class="cinfo-icon">✍️</div>
-          <div><div class="cinfo-label">Write For Us</div><div class="cinfo-val">Bold pitches only. We love fresh voices.</div></div>
+          <div><div class="cinfo-label">Write For Us</div><div class="cinfo-val">Bold pitches only. Fresh voices welcome.</div></div>
         </div>
       </div>
     </div>
@@ -1263,40 +872,244 @@ footer {
   </div>
 </div>
 
-<script>
-// Articles data
-const posts = [
-  { cat:'movies', icon:'🎬', bg:'bg-movies', cl:'c-movies', label:'🎬 Movies', title:'The Films That Defined a Generation — And What They Still Tell Us', excerpt:'Some movies age. Others become mirrors. These are the ones that refuse to let go of us, no matter how many times we watch them.', time:'10 min' },
-  { cat:'lifestyle', icon:'🌿', bg:'bg-lifestyle', cl:'c-lifestyle', label:'🌿 Lifestyle', title:'Morning Routines of People Who Actually Have It Together', excerpt:'Forget the 5am cold plunges. The real morning routines that work look nothing like what you see on Instagram.', time:'6 min' },
-  { cat:'tech', icon:'💻', bg:'bg-tech', cl:'c-tech', label:'⚡ Tech', title:'AI Is Not Coming For Your Job. Something Else Is.', excerpt:'The automation panic is real, but misdirected. Here is what you should actually be paying attention to.', time:'7 min' },
-  { cat:'food', icon:'🍜', bg:'bg-food', cl:'c-food', label:'🍜 Food', title:'Street Food Capital of the World? The Answer Will Surprise You', excerpt:'We surveyed 40 cities. The winner was not Bangkok. It was not Mexico City either. Here is what we found.', time:'8 min' },
-  { cat:'travel', icon:'✈️', bg:'bg-travel', cl:'c-travel', label:'✈️ Travel', title:'Hidden Gems in East Africa That\'ll Ruin You for Everywhere Else', excerpt:'Rwanda. Zanzibar. The Rift Valley at dawn. Once you\'ve seen it, every other landscape feels like a rough draft.', time:'9 min' },
-  { cat:'music', icon:'🎵', bg:'bg-music', cl:'c-music', label:'🎵 Music', title:'The Albums That Hit Different at 2am', excerpt:'Some music is made for the day. These records are for when the world finally goes quiet and you can actually hear yourself.', time:'5 min' },
-  { cat:'health', icon:'🌱', bg:'bg-health', cl:'c-health', label:'🌱 Health', title:'Why Your Body Feels Tired Even When You Sleep Enough', excerpt:'Exhaustion isn\'t always about sleep hours. The real culprit might be hiding somewhere completely unexpected.', time:'6 min' },
-  { cat:'home', icon:'🏠', bg:'bg-home', cl:'c-home', label:'🏠 Home', title:'Small Apartment, Big Life: Interior Ideas That Actually Work', excerpt:'You don\'t need more space. You need a smarter relationship with the space you already have. Here\'s how to start.', time:'8 min' },
-  { cat:'movies', icon:'🎭', bg:'bg-movies', cl:'c-movies', label:'🎬 Movies', title:'Every Oscar Best Picture Since 2000, Ranked by How Well It Aged', excerpt:'Not all Oscar winners are created equal. Some get better. Some get worse. One is basically unwatchable now.', time:'12 min' },
-  { cat:'news', icon:'📰', bg:'bg-news', cl:'c-news', label:'📰 News', title:'The Quiet Revolution Nobody Is Talking About', excerpt:'Underneath the noise of global politics and viral content, something slow and profound is shifting. Are you paying attention?', time:'5 min' },
-  { cat:'lifestyle', icon:'📚', bg:'bg-lifestyle', cl:'c-lifestyle', label:'🌿 Lifestyle', title:'Books That Genuinely Changed the Way I Think', excerpt:'Not a listicle. An honest account of the books that rewired something fundamental in how I see the world.', time:'7 min' },
-  { cat:'tech', icon:'📱', bg:'bg-tech', cl:'c-tech', label:'⚡ Tech', title:'Data Science Is the New Literacy. Are You Fluent?', excerpt:'The world runs on data. Those who can read it, shape it, and tell stories with it will define the next decade.', time:'8 min' },
-];
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── CONTENTFUL CONFIG ──
+const SPACE_ID = '3vhw4bihmxzh';
+const ACCESS_TOKEN = 'Cj4vUyX4xRVGyxejXjl3QJskync2wvh-G4dKXYsq5SY';
+const API_BASE = `https://cdn.contentful.com/spaces/${SPACE_ID}/entries`;
 
-function renderBlogCards(filter) {
-  const grid = document.getElementById('blogCards');
-  const filtered = filter === 'all' ? posts : posts.filter(p => p.cat === filter);
-  grid.innerHTML = filtered.map(p => `
-    <div class="card">
-      <div class="card-img ${p.bg}"><div class="card-img-inner">${p.icon}</div></div>
+// ── CATEGORY HELPERS ──
+const catConfig = {
+  movies:    { bg:'bg-movies',   c:'c-movies',   icon:'🎬', label:'🎬 Movies'    },
+  lifestyle: { bg:'bg-lifestyle',c:'c-lifestyle', icon:'🌿', label:'🌿 Lifestyle' },
+  tech:      { bg:'bg-tech',     c:'c-tech',      icon:'💻', label:'💻 Tech'      },
+  food:      { bg:'bg-food',     c:'c-food',      icon:'🍜', label:'🍜 Food'      },
+  travel:    { bg:'bg-travel',   c:'c-travel',    icon:'✈️', label:'✈️ Travel'    },
+  music:     { bg:'bg-music',    c:'c-music',     icon:'🎵', label:'🎵 Music'     },
+  health:    { bg:'bg-health',   c:'c-health',    icon:'🌱', label:'🌱 Health'    },
+  culture:   { bg:'bg-culture',  c:'c-culture',   icon:'🎨', label:'🎨 Culture'   },
+  finance:   { bg:'bg-finance',  c:'c-finance',   icon:'💰', label:'💰 Finance'   },
+  home:      { bg:'bg-home',     c:'c-home',      icon:'🏠', label:'🏠 Home'      },
+  fashion:   { bg:'bg-fashion',  c:'c-fashion',   icon:'👗', label:'👗 Fashion'   },
+  news:      { bg:'bg-news',     c:'c-news',      icon:'📰', label:'📰 News'      },
+};
+
+function getCat(raw) {
+  if (!raw) return catConfig.news;
+  const key = raw.toLowerCase().trim();
+  return catConfig[key] || { bg:'bg-default', c:'c-default', icon:'📝', label: raw };
+}
+
+// ── FETCH FROM CONTENTFUL ──
+async function fetchPosts(category = null) {
+  try {
+    let url = `${API_BASE}?content_type=post&order=-fields.publishDate&limit=50&access_token=${ACCESS_TOKEN}&include=1`;
+    if (category && category !== 'all') {
+      url += `&fields.category[match]=${encodeURIComponent(category)}`;
+    }
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('API error');
+    const data = await res.json();
+    // Attach resolved assets to each post
+    const assets = {};
+    (data.includes?.Asset || []).forEach(a => { assets[a.sys.id] = a; });
+    (data.items || []).forEach(item => { item._assets = assets; });
+    return data.items || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+// ── RESOLVE IMAGE URL ──
+function getImageUrl(post, width = 800) {
+  const f = post.fields;
+  const assets = post._assets || {};
+  // Try coverImage field (Media type)
+  if (f.coverImage && f.coverImage.sys) {
+    const asset = assets[f.coverImage.sys.id];
+    if (asset?.fields?.file?.url) {
+      return `https:${asset.fields.file.url}?w=${width}&fm=webp&fit=fill`;
+    }
+  }
+  return null;
+}
+
+// ── RENDER RICH TEXT (basic) ──
+function renderRichText(rt) {
+  if (!rt || !rt.content) return '<p>No content yet.</p>';
+  return rt.content.map(node => {
+    if (node.nodeType === 'paragraph') {
+      const text = node.content.map(n => {
+        let t = n.value || '';
+        if (n.marks) n.marks.forEach(m => {
+          if (m.type === 'bold') t = `<strong>${t}</strong>`;
+          if (m.type === 'italic') t = `<em>${t}</em>`;
+        });
+        return t;
+      }).join('');
+      return `<p>${text}</p>`;
+    }
+    if (node.nodeType === 'heading-2') {
+      return `<h2>${node.content[0]?.value || ''}</h2>`;
+    }
+    if (node.nodeType === 'heading-3') {
+      return `<h3>${node.content[0]?.value || ''}</h3>`;
+    }
+    if (node.nodeType === 'blockquote') {
+      const text = node.content[0]?.content[0]?.value || '';
+      return `<blockquote>${text}</blockquote>`;
+    }
+    if (node.nodeType === 'unordered-list') {
+      const items = node.content.map(li => `<li>${li.content[0]?.content[0]?.value || ''}</li>`).join('');
+      return `<ul>${items}</ul>`;
+    }
+    if (node.nodeType === 'ordered-list') {
+      const items = node.content.map(li => `<li>${li.content[0]?.content[0]?.value || ''}</li>`).join('');
+      return `<ol>${items}</ol>`;
+    }
+    return '';
+  }).join('');
+}
+
+// ── BUILD CARD HTML ──
+function buildCard(post, onclick) {
+  const f = post.fields;
+  const cat = getCat(f.category);
+  const emoji = f.coverEmoji || cat.icon;
+  const imgUrl = getImageUrl(post, 600);
+  const imgHtml = imgUrl
+    ? `<div class="card-img"><img src="${imgUrl}" alt="${f.title || ''}" loading="lazy"></div>`
+    : `<div class="card-img ${cat.bg}"><div class="card-img-inner">${emoji}</div></div>`;
+  return `
+    <div class="card" onclick="${onclick}">
+      ${imgHtml}
       <div class="card-body">
-        <div class="card-tag ${p.cl}">${p.label}</div>
-        <div class="card-title">${p.title}</div>
-        <div class="card-excerpt">${p.excerpt}</div>
+        <div class="card-tag ${cat.c}">${cat.label}</div>
+        <div class="card-title">${f.title || 'Untitled'}</div>
+        <div class="card-excerpt">${f.excerpt || ''}</div>
         <div class="card-meta">
           <div class="card-author">PulseToob</div>
-          <div class="card-read-time">${p.time}</div>
+          <div class="card-read-time">${f.readTime || '5 min'}</div>
         </div>
       </div>
+    </div>`;
+}
+
+// ── HOME PAGE ──
+async function loadHome() {
+  const posts = await fetchPosts();
+  const el = document.getElementById('homeContent');
+
+  if (!posts.length) {
+    el.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">✍️</div>
+        <h3>Your first story awaits</h3>
+        <p>PulseToob is connected to Contentful. Publish your first article and it'll appear here automatically.</p>
+        <div class="hint">
+          <strong>How to publish:</strong><br>
+          1. Go to <strong>app.contentful.com</strong><br>
+          2. Click <strong>Content → Add Post</strong><br>
+          3. Fill in: title, slug, category, excerpt, body, coverEmoji, readTime, publishDate<br>
+          4. Click <strong>Publish</strong> — it appears here instantly ✅
+        </div>
+      </div>`;
+    return;
+  }
+
+  const hero = posts[0];
+  const hf = hero.fields;
+  const hCat = getCat(hf.category);
+  const side = posts.slice(1, 4);
+  const trending = posts.slice(0, 4);
+  const latest = posts.slice(4, 10);
+
+  const sideHTML = side.map(p => {
+    const c = getCat(p.fields.category);
+    return `
+      <div class="hero-side-card" onclick="openArticle('${p.sys.id}')">
+        ${(()=>{ const u=getImageUrl(p,400); return u ? `<div class="side-img" style="background:#111"><img src="${u}" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.5s ease"></div>` : `<div class="side-img ${c.bg}">${p.fields.coverEmoji || c.icon}</div>`; })()}
+        <div class="side-img-overlay"></div>
+        <div class="hero-side-content">
+          <div class="side-badge ${c.c}">${c.label}</div>
+          <div class="side-title">${p.fields.title || ''}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  const trendingHTML = trending.map(p =>
+    buildCard(p, `openArticle('${p.sys.id}')`)
+  ).join('');
+
+  const latestHTML = latest.length ? `
+    <div class="section-head">
+      <div class="section-head-left">
+        <div class="section-head-icon" style="background:#f0f9ff">📰</div>
+        <h2>Latest Stories</h2>
+      </div>
+      <button class="section-head-link" onclick="showPage('blog')">See all →</button>
     </div>
-  `).join('');
+    <div class="cards-grid-3">${latest.map(p => buildCard(p, `openArticle('${p.sys.id}')`)).join('')}</div>
+  ` : '';
+
+  el.innerHTML = `
+    <div class="hero">
+      <div class="hero-main" onclick="openArticle('${hero.sys.id}')">
+        ${(()=>{ const u=getImageUrl(hero,1200); return u ? `<div class="hero-img" style="background:#111"><img src="${u}" alt="" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 0.6s ease"></div>` : `<div class="hero-img ${hCat.bg}">${hf.coverEmoji || hCat.icon}</div>`; })()}
+        <div class="hero-img-overlay"></div>
+        <div class="hero-main-content">
+          <div class="hero-badge" style="background:rgba(255,255,255,0.15);color:#fff">${hCat.label}</div>
+          <div class="hero-main-title">${hf.title || ''}</div>
+          <div class="hero-main-meta">
+            <span>PulseToob</span>
+            <span>${hf.readTime || '5 min read'}</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-side">${sideHTML}</div>
+    </div>
+    <div class="section-head">
+      <div class="section-head-left">
+        <div class="section-head-icon" style="background:#fff1f0">🔥</div>
+        <h2>Trending Now</h2>
+      </div>
+      <button class="section-head-link" onclick="showPage('blog')">See all →</button>
+    </div>
+    <div class="cards-grid">${trendingHTML}</div>
+    ${latestHTML}
+  `;
+}
+
+// ── BLOG PAGE ──
+let allPosts = [];
+async function loadBlog() {
+  const el = document.getElementById('blogCards');
+  el.innerHTML = `<div class="loading-screen" style="grid-column:1/-1"><div class="spinner"></div><div class="loading-text">Fetching stories...</div></div>`;
+  allPosts = await fetchPosts();
+  renderBlogCards('all');
+}
+
+function renderBlogCards(filter) {
+  const el = document.getElementById('blogCards');
+  const filtered = filter === 'all' ? allPosts : allPosts.filter(p => {
+    const cat = (p.fields.category || '').toLowerCase();
+    return cat.includes(filter);
+  });
+
+  if (!filtered.length) {
+    el.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <div class="empty-icon">📭</div>
+        <h3>${filter === 'all' ? 'No articles yet' : `No ${filter} articles yet`}</h3>
+        <p>Head to Contentful and publish your first post. It'll show up here the moment you hit Publish.</p>
+        <div class="hint">
+          <strong>Quick reminder of required fields:</strong><br>
+          title · slug · category · excerpt · body · coverEmoji · readTime · publishDate
+        </div>
+      </div>`;
+    return;
+  }
+  el.innerHTML = filtered.map(p => buildCard(p, `openArticle('${p.sys.id}')`)).join('');
 }
 
 function filterBlog(btn, cat) {
@@ -1305,25 +1118,49 @@ function filterBlog(btn, cat) {
   renderBlogCards(cat);
 }
 
+// ── ARTICLE VIEW ──
+async function openArticle(id) {
+  showPage('article');
+  const el = document.getElementById('articleContent');
+  el.innerHTML = `<div class="loading-screen"><div class="spinner"></div><div class="loading-text">Loading article...</div></div>`;
+
+  try {
+    const res = await fetch(`https://cdn.contentful.com/spaces/${SPACE_ID}/entries/${id}?access_token=${ACCESS_TOKEN}`);
+    const post = await res.json();
+    const f = post.fields;
+    const cat = getCat(f.category);
+    const bodyHTML = f.body ? renderRichText(f.body) : '<p>Content coming soon.</p>';
+    const date = f.publishDate ? new Date(f.publishDate).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) : '';
+
+    el.innerHTML = `
+      <button class="article-back" onclick="history.back(); showPage('blog')">← Back to stories</button>
+      <div class="article-cat ${cat.c}">${cat.label}</div>
+      <div class="article-title">${f.title || 'Untitled'}</div>
+      <div class="article-meta">
+        <span>By PulseToob</span>
+        ${date ? `<span>${date}</span>` : ''}
+        <span>${f.readTime || '5 min read'}</span>
+      </div>
+      ${(()=>{ const u=getImageUrl(post,1200); return u ? `<div class="article-cover" style="background:#111"><img src="${u}" alt="${f.title||''}"></div>` : `<div class="article-cover ${cat.bg}">${f.coverEmoji || cat.icon}</div>`; })()}
+      <div class="article-body">${bodyHTML}</div>
+    `;
+  } catch(e) {
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><h3>Couldn't load article</h3><p>Please try again.</p></div>`;
+  }
+}
+
+// ── NAVIGATION ──
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (id === 'blog') renderBlogCards('all');
+  if (id === 'blog') loadBlog();
+  if (id === 'home') loadHome();
 }
 
-function setNavCat(btn, cat) {
-  document.querySelectorAll('.cat-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+function goToBlog(cat) {
   showPage('blog');
   setTimeout(() => {
-    const matching = [...document.querySelectorAll('.filter-btn')].find(b => b.getAttribute('onclick')?.includes(`'${cat}'`));
-    if (matching) filterBlog(matching, cat);
-  }, 100);
-}
-
-// Init
-renderBlogCards('all');
-</script>
-</body>
-</html>
+    const btn = [...document.querySelectorAll('.filter-btn')].find(b => b.getAttribute('onclick')?.includes(`'${cat}'`));
+    if (btn) filterBlog(btn, cat);
+  }, 150);
